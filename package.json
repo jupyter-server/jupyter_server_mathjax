@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mathjax": "^2.7.4"
+  },
+  "devDependencies": {
+    "fs-extra": "^9.0.1"
+  },
+  "scripts": {
+    "build": "node ./copyAssets.js"
+  }
+}
