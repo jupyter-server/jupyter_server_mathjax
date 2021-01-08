@@ -1,5 +1,8 @@
 # MathJax resources endpoints for Jupyter Server
 
+![Testing](https://github.com/jupyter-server/jupyter_server_mathjax/workflows/Testing/badge.svg)
+
+
 
 ## Basic Usage
 
