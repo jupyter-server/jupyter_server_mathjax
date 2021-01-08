@@ -3,9 +3,10 @@
     "mathjax": "^2.7.4"
   },
   "devDependencies": {
-    "fs-extra": "^9.0.1"
+    "fs-extra": "^9.0.1",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
-    "build": "node ./copyAssets.js"
+    "build": "rimraf ./jupyter_server_mathjax/static && node ./copyAssets.js"
   }
 }

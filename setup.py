@@ -30,6 +30,9 @@ cmdclass = create_cmdclass(
     data_files_spec=[
         ("etc/jupyter/jupyter_server_config.d", "jupyter_server_config.d", "*.json")
     ],
+    package_data_spec={
+        NAME: ['static/**/*']
+    }
 )
 
 cmdclass["js"] = combine_commands(
