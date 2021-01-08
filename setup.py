@@ -71,6 +71,7 @@ setup_args = dict(
     ],
     extras_require={
         "test": [
+            "jupyter_server[test]",
             "pytest",
         ],
     },
