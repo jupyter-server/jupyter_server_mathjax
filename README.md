@@ -12,7 +12,7 @@ Install from PyPI:
 ```
 This will automatically enable the extension in Jupyter Server.
 
-To test the installation, you can run Jupyter Server and visit the `/static/components/MathJax/MathJax.js` endpoint:
+To test the installation, you can run Jupyter Server and visit the `/static/jupyter_server_mathjax/MathJax.js` endpoint:
 ```
 > jupyter server
 ```
