@@ -1,3 +1,6 @@
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+
 from pathlib import Path
 from setuptools import find_packages, setup
 from jupyter_packaging import (
@@ -20,8 +23,9 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 jstargets = [
-    here.joinpath(NAME, 'static', 'MathJax.js'),
-    here.joinpath(NAME, 'static', 'LICENSE'),  # We need to include the license if we are distributing MathJax
+    here.joinpath(NAME, "static", "MathJax.js"),
+    # if we are distributing MathJax, we need to include its license:
+    here.joinpath(NAME, "static", "LICENSE"),
 ]
 
 # Handle datafiles
@@ -30,9 +34,7 @@ cmdclass = create_cmdclass(
     data_files_spec=[
         ("etc/jupyter/jupyter_server_config.d", "jupyter_server_config.d", "*.json")
     ],
-    package_data_spec={
-        NAME: ['static/**/*']
-    }
+    package_data_spec={NAME: ["static/**/*"]},
 )
 
 cmdclass["js"] = combine_commands(
