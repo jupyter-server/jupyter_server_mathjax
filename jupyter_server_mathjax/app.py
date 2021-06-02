@@ -47,10 +47,12 @@ class MathJaxExtension(ExtensionApp):
     def initialize_settings(self):
         # Add settings specific to this extension to the
         # tornado webapp settings.
-        self.settings.update({
-            "mathjax_config": self.mathjax_config,
-            "mathjax_url": "/static/jupyter_server_mathjax/MathJax.js"
-        })
+        self.settings.update(
+            {
+                "mathjax_config": self.mathjax_config,
+                "mathjax_url": url_path_join(self.static_url_prefix, "MathJax.js"),
+            }
+        )
 
     def initialize_handlers(self):
         webapp = self.serverapp.web_app
