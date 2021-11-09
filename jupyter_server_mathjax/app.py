@@ -8,7 +8,10 @@ from tornado.web import RedirectHandler
 
 from jupyter_server.extension.application import ExtensionApp
 from jupyter_server.utils import url_path_join
-from jupyter_server.transutils import _i18n
+try:
+    from jupyter_server.transutils import _i18n
+except ImportError:
+    from jupyter_server.transutils import _ as _i18n
 
 
 STATIC_ASSETS_PATH = Path(__file__).parent / "static"
