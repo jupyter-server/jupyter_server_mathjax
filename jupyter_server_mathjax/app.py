@@ -8,8 +8,11 @@ from tornado.web import RedirectHandler
 
 from jupyter_server.extension.application import ExtensionApp
 from jupyter_server.utils import url_path_join
-from jupyter_server.transutils import _
 
+try:
+    from jupyter_server.transutils import _i18n as _
+except ImportError:
+    from jupyter_server.transutils import _
 
 STATIC_ASSETS_PATH = Path(__file__).parent / "static"
 
@@ -19,7 +22,7 @@ class DeprecatedRedirectHandler(RedirectHandler):
         import warnings
 
         warnings.warn(
-            "Redirecting old Notebook MathJax URL to new one. This will be removed in a future release.",
+            _("Redirecting old Notebook MathJax URL to new one. This will be removed in a future release."),
             PendingDeprecationWarning,
         )
         super().get(*args, **kwargs)
