@@ -56,6 +56,7 @@ setup_args = dict(
     platforms="Linux, Mac OS X, Windows",
     keywords=["ipython", "jupyter", "jupyter-server"],
     classifiers=[
+        "Framework :: Jupyter",
         "Intended Audience :: Developers",
         "Intended Audience :: System Administrators",
         "Intended Audience :: Science/Research",
