@@ -13,7 +13,6 @@ try:
 except ImportError:
     from jupyter_server.transutils import _ as _i18n
 
-
 STATIC_ASSETS_PATH = Path(__file__).parent / "static"
 
 
@@ -22,7 +21,7 @@ class DeprecatedRedirectHandler(RedirectHandler):
         import warnings
 
         warnings.warn(
-            "Redirecting old Notebook MathJax URL to new one. This will be removed in a future release.",
+            _i18n("Redirecting old Notebook MathJax URL to new one. This will be removed in a future release."),
             PendingDeprecationWarning,
         )
         super().get(*args, **kwargs)
