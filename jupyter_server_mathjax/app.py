@@ -8,11 +8,10 @@ from tornado.web import RedirectHandler
 
 from jupyter_server.extension.application import ExtensionApp
 from jupyter_server.utils import url_path_join
-
 try:
-    from jupyter_server.transutils import _i18n as _
+    from jupyter_server.transutils import _i18n
 except ImportError:
-    from jupyter_server.transutils import _
+    from jupyter_server.transutils import _ as _i18n
 
 STATIC_ASSETS_PATH = Path(__file__).parent / "static"
 
@@ -22,7 +21,7 @@ class DeprecatedRedirectHandler(RedirectHandler):
         import warnings
 
         warnings.warn(
-            _("Redirecting old Notebook MathJax URL to new one. This will be removed in a future release."),
+            _i18n("Redirecting old Notebook MathJax URL to new one. This will be removed in a future release."),
             PendingDeprecationWarning,
         )
         super().get(*args, **kwargs)
@@ -40,12 +39,12 @@ class MathJaxExtension(ExtensionApp):
     mathjax_config = Unicode(
         "TeX-AMS-MML_HTMLorMML-full,Safe",
         config=True,
-        help=_("""The MathJax.js configuration file that is to be used."""),
+        help=_i18n("""The MathJax.js configuration file that is to be used."""),
     )
 
     @observe("mathjax_config")
     def _update_mathjax_config(self, change):
-        self.log.info(_("Using MathJax configuration file: %s"), change["new"])
+        self.log.info(_i18n("Using MathJax configuration file: %s"), change["new"])
 
     def initialize_settings(self):
         # Add settings specific to this extension to the
