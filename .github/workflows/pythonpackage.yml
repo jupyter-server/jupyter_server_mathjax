@@ -20,6 +20,8 @@ jobs:
         exclude:
         - os: macos
           python-version: pypy-3.8
+        - os: windows
+          python-version: pypy-3.8
 
     steps:
     - uses: actions/checkout@v2
