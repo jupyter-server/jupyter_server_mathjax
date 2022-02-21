@@ -8,4 +8,4 @@ include pytest.ini
 include package.json
 include copyAssets.js
 
-graft tests
+graft jupyter_server_mathjax/static
