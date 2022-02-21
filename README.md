@@ -19,3 +19,33 @@ To test the installation, you can run Jupyter Server and visit the `/static/jupy
 ```sh
 > jupyter server
 ```
+
+## Maintenance Notes
+
+To install an editable install locally for development, first clone the repository locally,
+then run:
+
+```sh
+`pip install -e .[test]`
+```
+
+Note that the editable install will not install the data file that
+automatically configures the extension for use. To manually enable it, run:
+
+```sh
+jupyter server extension enable --py jupyter_server_mathjax
+```
+
+To build for distribution, use the `build` package:
+
+```sh
+pip install build
+python -m build
+```
+
+Then release using twine:
+
+```sh
+twine check dist/*
+twine check dist/*
+```
