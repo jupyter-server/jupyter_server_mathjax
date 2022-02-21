@@ -2,25 +2,17 @@
 # Distributed under the terms of the Modified BSD License.
 
 from pathlib import Path
-from setuptools import find_packages, setup
+from setuptools import setup
 from jupyter_packaging import (
-    combine_commands,
-    create_cmdclass,
-    ensure_targets,
+    wrap_installers,
+    npm_builder,
     get_version,
-    install_npm,
 )
 
 
 NAME = "jupyter_server_mathjax"
-
 here = Path(__file__).absolute().parent
-project_slug = NAME.lower().replace("-", "_").replace(" ", "_")
 version = get_version(here / NAME / "__version__.py")
-
-
-with open("README.md", "r") as fh:
-    long_description = fh.read()
 
 jstargets = [
     here.joinpath(NAME, "static", "MathJax.js"),
@@ -29,58 +21,16 @@ jstargets = [
 ]
 
 # Handle datafiles
-cmdclass = create_cmdclass(
-    "js",
-    data_files_spec=[
-        ("etc/jupyter/jupyter_server_config.d", "jupyter_server_config.d", "*.json")
-    ],
-    package_data_spec={NAME: ["static/**/*"]},
-)
-
-cmdclass["js"] = combine_commands(
-    install_npm(here),
-    ensure_targets(jstargets),
+builder = npm_builder(here)
+cmdclass = wrap_installers(
+    pre_develop=builder,
+    pre_dist=builder,
+    ensured_targets=jstargets
 )
 
 setup_args = dict(
-    name=NAME,
-    description="MathJax resources as a Jupyter Server Extension.",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
     version=version,
-    packages=find_packages(exclude=["tests*"]),
-    author="Jupyter Development Team",
-    author_email="jupyter@googlegroups.com",
-    url="http://jupyter.org",
-    license="BSD",
-    platforms="Linux, Mac OS X, Windows",
-    keywords=["ipython", "jupyter", "jupyter-server"],
-    classifiers=[
-        "Framework :: Jupyter",
-        "Intended Audience :: Developers",
-        "Intended Audience :: System Administrators",
-        "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-    ],
     cmdclass=cmdclass,
-    zip_safe=False,
-    python_requires=">=3.7",
-    include_package_data=True,
-    install_requires=[
-        "jupyter_server~=1.1",
-    ],
-    extras_require={
-        "test": [
-            "jupyter_server[test]",
-            "pytest",
-        ],
-    },
 )
 
 if __name__ == "__main__":
