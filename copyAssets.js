@@ -24,7 +24,7 @@ const include = [
 
 const re_include = [
   ["jax", "output", `[^${rps}]+.js$`],
-  ["jax", "output", "autoload", ".*"],
+  ["jax", "output", "HTML-CSS", "autoload", ".*"],
   ["localization", ".*"],
   ["fonts", "HTML-CSS", "STIX-Web", "woff", ".*"],
   ["extensions", ".*"],
